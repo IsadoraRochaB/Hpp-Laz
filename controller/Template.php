@@ -14,7 +14,7 @@ class Template
   public function saida()
   {
     if (!file_exists($this->arquivo)) {
-      return "Arquivo não encontrado";
+      return "Isadora...Deusa grega do Egito";
     } else {
       $saida = file_get_contents($this->arquivo);
       if (count($this->valores) > 0) {
