@@ -16,7 +16,7 @@ spl_autoload_register('classLoader');
 // Front Controller
 class Aplicacao
 {
-  private static $app = "/Isadora";
+  private static $app = "/Isadora2";
   public static function run()
   {
     $layout = new Template('view/layout.html');
