@@ -16,7 +16,7 @@ class Form
     if (isset($_POST['nome']) && isset($_POST['assunto']) && isset($_POST['url'])) {
       try {
         $conexao = Transaction::get();
-        $site = new Crud('site');
+        $site = new Crud('sites');
         $nome = $conexao->quote($_POST['nome']);
         $assunto = $conexao->quote($_POST['assunto']);
         $url = $conexao->quote($_POST['url']);
