@@ -1,26 +1,37 @@
 <table>
-    <thead>
-      <tr>
-        <th>Nome</th>
-        <th>Assunto</th>
-        <th>url</th>
-        <th>Editar</th>
-        <th>Remover</th>
-      </tr>
-    </thead>
-    <tbody>
-      {linha}
-      <tr>
-        <td>{nome}</td>
-        <td>{assunto}</td>
-        <td>{url}</td>
-        <td>
-          <button type="button">Editar</button>
-        </td>
-        <td>
-          <button type="button">Remover</button>
-        </td>
-      </tr>
-      {/linha}
-    </tbody>
-  </table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Assunto</th>
+      <th>url</th>
+      <th>Editar</th>
+      <th>Remover</th>
+    </tr>
+  </thead>
+  <tbody>
+    {linha}
+    <tr>
+      <td>{nome}</td>
+      <td>{assunto}</td>
+      <td>{url}</td>
+      <td>
+        <button
+          type="button"
+          onclick="location.href='?class=Form&method=editar&id={id}'"
+        >
+          Editar
+        </button>
+      </td>
+      <td>
+        <button
+          type="button"
+          onclick="if(confirm('Deseja realmente remover?'))
+            location.href='?class=Tabela&method=remover&id={id}'"
+        >
+          Remover
+        </button>
+      </td>
+    </tr>
+    {/linha}
+  </tbody>
+</table>
