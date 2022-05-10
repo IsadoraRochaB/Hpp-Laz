@@ -2,6 +2,7 @@
 class Form
 {
   private $message = "";
+  private $error = "";
   public function __construct()
   {
     Transaction::open();
@@ -30,8 +31,12 @@ class Form
           $id = $conexao->quote($_POST['id']);
           $site->update("nome=$nome,assunto=$assunto,url=$url", "id=$id");
         }
+        $this->message = $site->getMessage();
+        $this->error = $site->getError();
+
       } catch (Exception $e) {
-        echo $e->getMessage();
+        $this->message = $e->getMessage();
+        $this->error = true;
       }
     }
   }
@@ -44,21 +49,40 @@ class Form
         $sites = new Crud('sites');
         $resultado = $sites->select("*", "id=$id");
         $form = new Template("view/form.html");
+        if (!$sites->getError()) {
+          $form = new Template("view/form.html");
         foreach ($resultado[0] as $cod => $valor) {
           $form->set($cod, $valor);
         }
         $this->message = $form->saida();
-      } catch (Exception $e) {
-        echo $e->getMessage();
+      } else {
+        $this->message = $computador->getMessage();
+        $this->error = true;
       }
+    } catch (Exception $e) {
+      $this->message = $e->getMessage();
+      $this->error = true;
     }
   }
-  public function getMessage()
-  {
+}
+public function getMessage()
+{
+  if (is_string($this->error)) {
     return $this->message;
+  } else {
+    $msg = new Template("view/msg.html");
+    if ($this->error) {
+      $msg->set("cor", "danger");
+    } else {
+      $msg->set("cor", "success");
+    }
+    $msg->set("msg", $this->message);
+    $msg->set("uri", "?class=Tabela");
+    return $msg->saida();
   }
-  public function __destruct()
-  {
-    Transaction::close();
-  }
+}
+public function __destruct()
+{
+  Transaction::close();
+}
 }
