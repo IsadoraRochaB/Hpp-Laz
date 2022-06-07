@@ -27,10 +27,10 @@ class Login
                     "email={$email} AND senha={$senha}"
                 );
                 if (!$crud->getError()) {
-                    Session::startSesssion();
+                    Session::startSession();
                     Session::setValue("id", $usuario[0] ["id"]);
                     Session::setValue("nome", $usuario[0] ["nome"]);
-                    header("Location:/Isacerto/restrita.php");
+                    header("Location:/Isadora/restrita.php");
                 }
                 $this->message = $usuario->getMessage();
                 $this->message = "Login ou senha inválidos!";

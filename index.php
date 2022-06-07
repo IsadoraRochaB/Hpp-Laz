@@ -25,7 +25,7 @@ Session::freeSession();
 // Front Controller
 class Aplicacao
 {
-  private static $app = "/Isacerto";
+  private static $app = "/Isadora";
   public static function run()
   {
     $layout = new Template('public/view/layout.html');

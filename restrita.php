@@ -29,8 +29,8 @@ if (!Session::getValue("id")) {
 // Front Controller
 class Aplicacao
 {
-    static public $path = "/Isacertp";
-    static private $uri = "/Isacerto/restrita.php";
+    static public $path = "/Isadora";
+    static private $uri = "/Isadora/restrita.php";
     public static function run()
     {
         $layout = new Template("restrict/view/layout.html");
